@@ -8,7 +8,7 @@ menu:
 excerpt_link: read more
 
 # Favicon
-favicon: images/favicon.ico
+favicon: /images/favicon.ico
 
 # Settings toggle
 settings: false
