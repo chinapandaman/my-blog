@@ -11,7 +11,7 @@ excerpt_link: read more
 # favicon: /favicon.ico
 
 # Settings toggle
-settings: true
+settings: false
 
 # Code CSS toggle
 highlight: true
