@@ -2,7 +2,8 @@
 menu:
   Home: /
   Archives: /archives
-# rss: /atom.xml
+  GitHub: https://github.com/chinapandaman
+  RSS: /atom.xml
 
 # Content
 excerpt_link: read more
