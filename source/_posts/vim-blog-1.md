@@ -1,5 +1,5 @@
 ---
-title: Configure Vim as Primary IDE - Intro
+title: Vim as Primary IDE - Intro
 date: 2023-04-28 14:31:10
 tags:
 	- Coding

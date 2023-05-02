@@ -1,5 +1,5 @@
 ---
-title: Configure Vim as Primary IDE - Boilerplate
+title: Vim as Primary IDE - Boilerplate
 date: 2023-05-02 17:52:55
 tags:
 	- Coding
