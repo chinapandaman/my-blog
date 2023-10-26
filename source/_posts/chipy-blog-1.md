@@ -17,7 +17,7 @@ On December 14th I will have the pleasure of presenting my first public tech spe
 
 Good evening. First of all I’d like to thank the Chicago Python User Group for obviously giving me this great opportunity to present in front of you all. My name is Jinge Li and today I’d like to talk about an open source project that I have been working on for the last three years. It is a Python library named PyPDFForm.
 
-Here is a quick agenda for this speak. I’d like to spend the first 20 to 25 minutes talking about some backgrounds regarding this project. What are some of my personal tech journeys? What sparked this idea? And just general motivations and stuff. We will spend the next 10-15 minutes going through a small coding session where I will showcase some simple but essential functionalities of the library. And finally we will wrap up with some discussions about the future and Q and A. OK?
+Here is a quick agenda for this speak. I’d like to spend the first 20 to 25 minutes talking about some backgrounds regarding this project. What are some of my personal tech journeys? What sparked this idea? And just general motivations and stuff. We will spend the next 10-15 minutes going through a small coding session where I will showcase some simple but essential functionalities of the library. And finally we will wrap up with some restrictions and the future of the library and Q and A. OK?
 
 ### Background
 
@@ -45,13 +45,13 @@ It is a Python library called reportlab. I’m not sure how many of you have hea
 
 But with this library you can create complex layouts like grids or tables.
 
-And it ultimately archives PDF generation in a programmatic way using Python code.
+And it ultimately achieves PDF generation in a programmatic way using Python code.
 
 Now however, and yes there is always the however.
 
 It is one thing if you are trying to generate something like this. You know. You have a title at the top. The main section is trisected vertically. Each section has some simple texts. Nice and easy.
 
-But it’s another thing if you are to, say, generate something that looks like this. Here you have tens of rows where each row’s cells don’t align with one another. Images that are squeezed into some cells. I don’t even want to talk about texts that are vertically aligned. Yikes.
+But it’s another thing if you are to, say, generate something that looks like this. Here you have tens of rows where each row’s cells don’t align with one another. Images that are squeezed into some cells. I don’t even want to talk about texts that are vertically aligned. Yuck.
 
 So what does this tell us? Well, PDFs can be complex. I think we all agree this one on the right is complex and trust me this is not uncommon.
 
@@ -65,7 +65,7 @@ When I first graduated from college, my first job was at this local startup here
 
 So now with that being said, any of you who have ever worked with the government will know one thing that’s true. They have a lot of paperwork. And that complex PDF I just showed you earlier is actually very close to some of the documents we have to generate for our clients. And the struggles I was talking about when using reportlab were the exact same struggles I had at work.
 
-So I started thinking about how I can improve this process, and this is when I started doing my research. Well the first thing that came to my mind is PDF forms. I’m sure many of you here have dealt with it at some point of your life. Like it used to be that when you go file your taxes those forms you downloaded and filled were PDF forms. When you apply for your U.S. passport the application you filled in was also a PDF form. So the moment I thought about that I was like, great I just need to prepare the PDF I want to generate into a form and fill it programmatically with the data that needs to be plugged in.
+So I started thinking about how I can improve this process, and this is when I started doing my research. And the thing that came to my mind is PDF forms. I’m sure many of you here have dealt with it at some point of your life. Like it used to be that when you go file your taxes those forms you downloaded and filled were PDF forms. When you apply for your U.S. passport the application you filled in was also a PDF form. So the moment I thought about that I was like, great I just need to prepare the PDF I want to generate into a form and fill it programmatically with the data that needs to be plugged in.
 
 And in the world of software development, one thing that’s almost always true is that we shouldn’t be reinventing wheels. And that’s why I ask myself, is there an existing solution already? Right? There’s no way I’m the only person who ran into this problem and there’s gotta be something implemented already.
 
