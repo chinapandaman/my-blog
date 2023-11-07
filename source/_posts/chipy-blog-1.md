@@ -1,6 +1,6 @@
 ---
 title: ChiPy Speak Script
-date: 2023-10-26 17:16:41
+date: 2023-11-06 22:16:41
 tags:
 	- Speak
 ---
@@ -82,3 +82,29 @@ It also has some other miscellaneous functionalities such as drawing images and 
 Now let me spend a bit time talking about this last bullet point, what do I mean by that? Well the previous process of generating PDF forms would be that your clients give you a PDF that they want you to generate, and it is on you, the developer, to write the script that would precisely describe the layout of it. This process is just very tedious and time consuming. Well now instead of you scripting out the layout, the layout is already there because when your clients hand you the PDF, your project manager can just go ahead and turn it into a PDF form using any main steam form preparation tool like Adobe Acrobat. All you have to do is figuring out what data needs to go on there, preparing the dictionary and plugging it in. This is a much less painful process for developers and draws clear scope for the process of PDF generation.
 
 Before we move on, any question?
+
+### Coding Session
+
+TBC.
+
+### Conclusion
+
+I’d like to wrap up this speak with some discussions around restrictions and future improvements that are planned. Because many of you may be wondering, now that you have shown what the library can do, what can it not do?
+
+Well the library requires you to have a static PDF form template as a baseline, so the largest restriction with it is that it cannot generate dynamic sections. So on the right you see a pretty common example of an invoice PDF. Notice that middle section where all the items are listed? That’s not something you can handle with the library. I mean sure maybe you can have like ten rows of text fields and it will probably work for the most part. But the point I’m trying to make is that it's not flexible. So all and all for PDFs with dynamic sections you still need something like reportlab.
+
+The next thing is that the library only supports some of the most common elements like you just saw in the demo. Now the elements that you guys saw probably cover 90% of the usage of PDF forms. But still there are more. I can give you two common ones. Image fields, you know, the one where you can click on it and attach an image on it. Another one is signature fields, kinda similar to image fields but instead where you sign.
+
+And finally like what I said earlier in the demo, there are many PDF form preparation tools out there. Some of them generate the form the same way but some other ones are different under the hood. I believe I have made the library to support most of the mainstream ones out there but still there is no way I have explored every single one of them out there.
+
+With that being said, let’s talk about some future improvements that are currently on my radar for the library.
+
+First, obviously I’d love to support more elements. Using image fields for example, I tried to support it about two years ago but was not able to. But at the time I was also not as experienced in terms of developing this library as I am nowadays, so I have been having the thoughts of picking it back up again.
+
+Next I would love to support more of those unexplored form preparation tools out there. This in fact is something I wrote on the README. If you ever run into a problem where whatever tools you are using to prepare the PDF form that doesn’t work with the library, open an issue and I will try to get it supported.
+
+And you tell me! Ya that’s correct. And this brings me back to why I’m here to present in front of you all. Recently I have run into kinda a stale state when working on PyPDFForm where I’m starting to run out of ideas on what features to bring next. This is why I came here, to present in front of a group of public, and hopefully by speaking with you guys some new ideas will spark again. And this doesn’t have to happen immediately. If any of you find this library useful, or simply find it interesting and try play with it for a bit, I’m always a believer that users are the best source of ideas.
+
+Any other question?
+
+Well thank you very much. It is my honor to speak in front of you all and again thanks to Chicago Python User Group for having me.
