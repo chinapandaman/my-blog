@@ -85,7 +85,129 @@ Before we move on, any question?
 
 ### Coding Session
 
-TBC.
+So obviously talk is cheap. Let's spend the next ten fifteen minutes on a coding session to show you guys some of the stuffs the library can do.
+
+So right here I have an empty directory on my computer. Let's start by first creating a virtual environment.
+
+```shell
+python3 -m venv venv
+```
+
+The installation of PyPDFForm is similar to any other libraries. You just do the normal pip install.
+
+```shell
+pip install PyPDFForm
+```
+
+So I could show you how to prepare a PDF form from scratch but we only have that much time and there are many other tutorials online for many tools. So I will skip it and [here](https://eforms.state.gov/Forms/ds11.pdf) I have a random PDF form I found online. It's an application for the U.S. passport. Let's use this for our demo. So let's download it and put it in our directory.
+
+And we can instantiate a PyPDFForm object using the form we just downloaded.
+
+```python
+from PyPDFForm import PyPDFForm
+
+pdf = PyPDFForm('ds11.pdf')
+```
+
+Now the first thing you want to ask yourself when you get a PDF form is what are the names for all these widgets or elements, aka what are the keys of the dictionary you will fill it with. So here I wanna show you a somewhat new and experimental functionality I developed recently called preview.
+
+So let's create an output file and then write the preview of the form into it and see what happens.
+
+```python
+with open('output.pdf', 'wb+') as f:
+    f.write(pdf.preview)
+```
+
+And if we go ahead and open up the output PDF, we will see that each element will have its name displayed on top of it in red.
+
+So this does look better on a simpler PDF form. But as you can see with this one it gets quite messy when it's complex, which is why it's an experimental feature and I'm still thinking about how I can improve it.
+
+A more mature method to inspect a form is the generate schema method. So you just have to do this:
+
+```python
+from pprint import pprint
+
+pprint(pdf.generate_schema())
+```
+
+And what you are seeing here is a JSON schema that describes the JSON object, or in the context of Python the dictionary that the object expects. So for example `Applicant First Name` takes a string and has a maximum length of 17. `Applicant Changing Gender` is a boolean value which is saying it is a checkbox. `Card Status` takes an integer type and has a maximum value of 3 and why is that? Because it's a radio button and has 4 different choices.
+
+Combining the schema and the preview will give you a pretty good idea on what data should go into the form. And another nice thing is when you do have your dictionary ready, you can use the schema to validate the dictionary just like how you would use your JSON schema to validate a JSON object.
+
+So now that we know what data needs to go into the object, let's fill it out. As you can see from the schema, none of these elements are required so let's just fill the three elements we just discussed. And all you have to do is calling the fill method and pass the dictionary to it.
+
+```python
+filled = pdf.fill(
+    {
+        "Applicant First Name": "Jinge",
+        "Applicant Changing Gender": True,
+        "Card Status": 1,
+    }
+)
+```
+
+And now you have your filled form, the object implements itself similar to a file object. So you can simply write it out like this:
+
+```python
+with open('output.pdf', 'wb+') as f:
+    f.write(filled.read())
+```
+
+And if we open up the output file, we will see our first filled PDF form.
+
+So one thing you will notice is that the library does respect the styles of these elements. So if we look at this first name field you can see how each character is evenly spaced out. This is actually a property for these text fields called comb that you can set when you create the form and what's nice about PyPDForm is that it's smart enough to know the styling and adjust accordingly. And I will show you another example in just a minute.
+
+So let's move away from the code and try to tweak our PDF form for a bit. And there are many tools out there that you can use to prepare or modify PDF forms. The most professional one is probably Adobe Acrobat. The one I'm going to use here is a web based one called DocFly. So let's upload our PDF form and make some changes to it.
+
+As you can see here, this first name text field did have the combed property set and that's why its characters are evenly spaced out. If I deselect the property you can see the text no longer do that.
+
+Let's look at another one. On this next page you have this other name field called `Name of Applicant 2`. What I'm going to do is to change the style of texts that are filled into it. So let's first change the font from `Helvetica` to `Times New Roman`. And then I think the texts are just too big even though they are not so I'm changing the font size from 18 to 12. I'm also changing the font color to, let's say magenta. I'm making it both bold and italic. And finally I'm making it align to the middle instead of to the left.
+
+That seems to me enough changes. Let's save the file and download it. And I'm making no other code changes besides changing which template to use and adding that new text field we just made a lot of changes to to the dictionary.
+
+```python
+pdf = PyPDFForm('ds11-copy.pdf')
+
+filled = pdf.fill(
+    {
+        "Applicant First Name": "Jinge",
+        "Applicant Changing Gender": True,
+        "Card Status": 1,
+        "Name of Applicant 2": "Jinge",
+    }
+)
+```
+
+And if we run it, you will see now that the name field on the first page is no longer evenly spaced out, and the name field on the second page now has a different font with a smaller font size and color. It's bold and italic and align to the middle. This just shows how smart the library is. If you use is and need to make styling changes, have your project manager do it because they should be experts at Adobe Acrobat and all you need to focus on is the data that needs to go in there.
+
+Well then you may be wondering, sometimes the style of the template is not what it should be, but at the same time I don't have one of these form preparation tools to change it. Well the PyPDFForm object does let you to tweak some of the styles during run time. Let's look at how it works.
+
+Let's say now that we have made this first name field no longer spaced out, I feel like its font size should be larger. And the way you access all of these elements of your object is through the elements attribute. And just like how you would access a value of dictionary through its key, you do the same thing right here. And here you can set its font size by just doing this:
+
+```python
+pdf.elements["Applicant First Name"].font_size = 30
+```
+
+And if we re-run our scripts, you will see that you can change the font size during run time if you don't like it.
+
+Same thing, so let's say you regret making the second name field's font so small and you no longer like magenta as its font color. You can make the same changes for it too.
+
+```python
+pdf.elements["Name of Applicant 2"].font_size = 18
+pdf.elements["Name of Applicant 2"].font_color = (1, 0, 0)
+```
+
+Here for the font color it takes an RGB tuple, let's make it red. Re-run the script and let's see the effect.
+
+And finally you say forget everything I just want to make every single text I filled into the PDF form super large and blue. Well it turns out you can do that too when you instantiate the object.
+
+```python
+pdf = PyPDFForm('ds11-copy.pdf', global_font_size=50, global_font_color=(0, 0, 1))
+```
+
+Obviously these are just the peak of iceberg. There are some other functionalities like draw text, draw images, and merge multiple PDFs together. But I really want to show the essential part of it, which is the actually filling piece.
+
+Any question before we move on?
 
 ### Conclusion
 
