@@ -91,6 +91,7 @@ So right here I have an empty directory on my computer. Let's start by first cre
 
 ```shell
 python3 -m venv venv
+source venv/bin/activate
 ```
 
 The installation of PyPDFForm is similar to any other libraries. You just do the normal pip install.
