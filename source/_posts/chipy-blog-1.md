@@ -21,7 +21,7 @@ Here is a quick agenda for this speak. I’d like to spend the first 20 to 25 mi
 
 ### Background
 
-So obviously you all are here to attend the **Chicago** Python User Group. And we can’t talk about background without talking about some background of Python. And I’m sure we all agree Python is in a great state right now.
+So obviously you all are here to attend the Chicago **Python** User Group. And we can’t talk about background without talking about some background of Python. And I’m sure we all agree Python is in a great state right now.
 
 It has stayed at the top of the TIOBE Index for many years. As a matter of fact I don’t recall when was the last time it dropped out of the top five.
 
